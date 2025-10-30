@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DawaojOne Company - Car Shop</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg,#004080,#0066cc);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 5px;
+                letter-spacing: 1px;
+            }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        nav li {
+            margin: 5px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: background .3s;
+        }
+
+            nav a:hover {
+                background: rgba(255,255,255,0.2);
+            }
+
+        main {
+            padding: 30px 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+            section h2 {
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 1.8rem;
+                color: #004080;
+            }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .car-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+            }
+
+            .car-card img {
+                width: 100%;
+                height: 170px;
+                object-fit: cover;
+            }
+
+        .car-info {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .car-info h3 {
+                margin-bottom: 10px;
+            }
+
+        .price {
+            color: #007b00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .car-info button {
+            background: #004080;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+            .car-info button:hover {
+                background: #0066cc;
+            }
+
+        .cart-section, .checkout-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .cart-items {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+            .cart-items li {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 8px;
+            }
+
+            .cart-items button {
+                background: none;
+                border: none;
+                color: red;
+                cursor: pointer;
+            }
+
+        .cart-total {
+            font-weight: bold;
+        }
+
+        form.checkout {
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+            form.checkout input, form.checkout button {
+                padding: 12px;
+                font-size: 1rem;
+                border-radius: 6px;
+            }
+
+            form.checkout input {
+                border: 1px solid #ccc;
+            }
+
+            form.checkout button {
+                background: #28a745;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                transition: background .3s;
+            }
+
+                form.checkout button:hover {
+                    background: #218838;
+                }
+
+                form.checkout button[disabled] {
+                    background: #888;
+                    cursor: not-allowed;
+                }
+
+        footer {
+            background: #222;
+            color: #ddd;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DawaojOne Company</h1>
+        <nav>
+            <ul>
+                <li><a href="#cars">Shop</a></li>
+                <li><a href="#cart">Cart</a></li>
+                <li><a href="#checkout">Checkout</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cars">
+            <h2>Available Vehicles</h2>
+            <div class="cars-grid">
+                <!-- Add as many car cards as needed -->
+                <div class="car-card" data-id="ford">
+                    <img src="/images/FORDRANGER.jpg" alt="Ford car">
+                    <div class="car-info">
+                        <h3>Ford Ranger</h3>
+                        <div class="price">KSh 3,000,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="mazda">
+                    <img src="/images/MAZDA.jpg" alt="Mazda car">
+                    <div class="car-info">
+                        <h3>Mazda CX-5</h3>
+                        <div class="price">KSh 2,800,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="toyota">
+                    <img src="images/toyotaprado.jpg" alt="Toyota prado(kakandu)">
+                    <div class="car-info">
+                        <h3>Toyota Land Cruiser</h3>
+                        <div class="price">KSh 7,200,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="mercedes">
+                    <img src="images/mercedes.jpg" alt="Mercedes car">
+                    <div class="car-info">
+                        <h3>Mercedes Benz E-Class</h3>
+                        <div class="price">KSh 9,500,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="bmw">
+                    <img src="images/BMWX5.jpg" alt="BMW car">
+                    <div class="car-info">
+                        <h3>BMW X5</h3>
+                        <div class="price">KSh 8,200,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="audi">
+                    <img src="images/audi.jpg" alt="Audi car">
+                    <div class="car-info">
+                        <h3>Audi Q7</h3>
+                        <div class="price">KSh 7,800,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="tesla">
+                    <img src="images/cybertruck.jpeg" alt="Tesla car">
+                    <div class="car-info">
+                        <h3>Tesla Model S</h3>
+                        <div class="price">KSh 15,000,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="car-card" data-id="porsche">
+                    <img src="images/porche.jpg" alt="Porsche car">
+                    <div class="car-info">
+                        <h3>Porsche Cayenne</h3>
+                        <div class="price">KSh 12,000,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="cart-section">
+            <h2>Your Cart</h2>
+            <ul class="cart-items"></ul>
+            <div class="cart-total">Total: KSh <span id="cart-total">0</span></div>
+        </section>
+
+        <section id="checkout" class="checkout-section">
+            <h2>Checkout</h2>
+            <form class="checkout" id="checkout-form">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Phone" required>
+                <input type="tel" name="mpesa" placeholder="Mpesa Number" required>
+                <button type="submit" disabled>Submit Purchase</button>
+            </form>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p style="max-width:700px;margin:auto;text-align:center;">
+                DawaojOne Company is your trusted dealer in a wide range of vehicles that are userfreindly and serve both individuals with diferrent disabilities.
+                We combine affordability with luxury, ensuring that every client drives home satisfied, also ensuring our clients enjoy while on their rides. SHOP WITH US BECAUSE WE ARE THE BEST
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p style="text-align:center;">
+                Email: support@dawaojone.com | Phone: +254719804129 | Nairobi, Kenya
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 DawaojOne Company. Designed with ❤️ by DAWAOJDAVIDS
+    </footer>
+
+    <script>
+  const cars = {
+    ford: {name:"Ford Ranger", price:3000000},
+    mazda: {name:"Mazda CX-5", price:2800000},
+    toyota: {name:"Toyota Land Cruiser", price:7200000},
+    mercedes: {name:"Mercedes Benz E-Class", price:9500000},
+    bmw: {name:"BMW X5", price:8200000},
+    audi: {name:"Audi Q7", price:7800000},
+    tesla: {name:"Tesla Model S", price:15000000},
+    porsche: {name:"Porsche Cayenne", price:12000000}
+  };
+
+  const cart = {};
+
+  function updateCartDisplay() {
+    const cartItemsEl = document.querySelector('.cart-items');
+    const totalEl = document.getElementById('cart-total');
+    cartItemsEl.innerHTML = '';
+    let total = 0;
+    for (let id in cart) {
+      const item = cart[id];
+      total += item.price * item.qty;
+      const li = document.createElement('li');
+      li.textContent = `${item.name} x ${item.qty} — KSh ${(item.price*item.qty).toLocaleString()}`;
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '✖';
+      removeBtn.onclick = () => {delete cart[id]; updateCartDisplay(); checkCheckoutButton();};
+      li.appendChild(removeBtn);
+      cartItemsEl.appendChild(li);
+    }
+    totalEl.textContent = total.toLocaleString();
+  }
+
+  function checkCheckoutButton() {
+    const btn = document.querySelector('#checkout-form button');
+    btn.disabled = Object.keys(cart).length === 0;
+  }
+
+  document.querySelectorAll('.add-to-cart').forEach(btn=>{
+    btn.onclick = e=>{
+      const card = e.target.closest('.car-card');
+      const id = card.dataset.id;
+      if(cart[id]) cart[id].qty++;
+      else cart[id] = {name:cars[id].name, price:cars[id].price, qty:1};
+      updateCartDisplay(); checkCheckoutButton();
+    };
+  });
+
+  document.getElementById('checkout-form').onsubmit = e=>{
+    e.preventDefault();
+    if(Object.keys(cart).length===0) return alert("Cart is empty!");
+    alert("Thank you for your purchase, "+ e.target.fullname.value + "!");
+    for(let key in cart) delete cart[key];
+    updateCartDisplay(); checkCheckoutButton(); e.target.reset();
+  };
+    </script>
+</body>
+</html>
